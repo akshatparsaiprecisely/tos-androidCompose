@@ -26,12 +26,11 @@ fun DataStatsButtons(
     modifier: Modifier = Modifier,
     color: Color = Color.White,
     textStyle: TextStyle = TextStyle(),
-    image: Painter = painterResource(id = R.drawable.ic_baseline_folder_open_24),
-
+    titleText: String,
     onClick: () -> Unit
 ) {
     val borderRadius = 16.dp
-    val borderStrokeWidth = 1.dp
+    val borderStrokeWidth = 0.1.dp
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
@@ -44,12 +43,16 @@ fun DataStatsButtons(
             .then(modifier)
     ) {
         Column {
-            Image(painter = image , contentDescription = symbol, alignment = Alignment.Center)
+            Text(
+                text = titleText,
+                fontSize = 27.sp,
+                color = color
+            )
             Text(
                 text = symbol,
                 style = textStyle,
                 fontSize = 11.sp,
-                color = color
+                color = Color.Gray
             )
         }
 

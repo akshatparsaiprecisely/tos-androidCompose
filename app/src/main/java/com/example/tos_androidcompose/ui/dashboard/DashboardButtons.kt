@@ -42,14 +42,17 @@ fun DashboardButtons(
         modifier = Modifier
             .background(Color.White)
             .clip(RoundedCornerShape(borderRadius))
-            .border(borderStrokeWidth, Color.Black, RoundedCornerShape(borderRadius))
+            .border(borderStrokeWidth, color, RoundedCornerShape(borderRadius))
             .clickable {
                 onClick()
             }
             .then(modifier)
     ) {
         Column {
-            Image(painter = image , contentDescription = symbol, alignment = Alignment.Center)
+            Image(
+                painter = image,
+                contentDescription = symbol,
+                alignment = Alignment.Center)
             Text(
                 text = symbol,
                 style = textStyle,

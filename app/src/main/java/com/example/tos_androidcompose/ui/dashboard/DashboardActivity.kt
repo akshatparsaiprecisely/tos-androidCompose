@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.tos_androidcompose.DashboardButtons
 import com.example.tos_androidcompose.R
+import com.example.tos_androidcompose.ui.theme.DataStatsButtons
 import com.example.tos_androidcompose.ui.theme.Orange
 import com.example.tos_androidcompose.ui.theme.TosandroidComposeTheme
 import com.example.tos_androidcompose.ui.theme.colorPrimary
@@ -45,7 +46,7 @@ class DashboardActivity : ComponentActivity() {
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .align(alignment = BiasAlignment(0f, -0.37f)),
+                            .align(alignment = BiasAlignment(0f, -0.14f)),
                         verticalArrangement = Arrangement.spacedBy(10.dp),
                     ) {
 
@@ -57,7 +58,7 @@ class DashboardActivity : ComponentActivity() {
                                 .padding(50.dp)
                         ) {
                             val borderRadius = 16.dp
-                            val borderStrokeWidth = 1.dp
+                            val borderStrokeWidth = .01.dp
 
                             Box(
                                 modifier = Modifier
@@ -92,6 +93,7 @@ class DashboardActivity : ComponentActivity() {
                                     modifier = Modifier
                                         .aspectRatio(1f)
                                         .weight(1f)
+                                        .padding(10.dp)
                                 ) {
 //                            fuctionality
                                 }
@@ -135,10 +137,40 @@ class DashboardActivity : ComponentActivity() {
                             Row(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .padding(20.dp),
+                                    .padding(10.dp),
                                 horizontalArrangement = Arrangement.spacedBy(10.dp)
                             ) {
-
+                                DataStatsButtons(
+                                    titleText = "415",
+                                    color = colorPrimary,
+                                    symbol = getString(R.string.Notifiction),
+                                    modifier = Modifier
+                                        .aspectRatio(1f)
+                                        .weight(1f)
+                                        .padding(10.dp)
+                                ) {
+//                            fuctionality
+                                }
+                                DataStatsButtons(
+                                    titleText = "415",
+                                    symbol = getString(R.string.Notifiction),
+                                    color = Color.Green,
+                                    modifier = Modifier
+                                        .aspectRatio(1f)
+                                        .weight(1f)
+                                ) {
+                                    //                            fuctionality
+                                }
+                                DataStatsButtons(
+                                    titleText = "415",
+                                    symbol = getString(R.string.Chats),
+                                    color = Orange,
+                                    modifier = Modifier
+                                        .aspectRatio(1f)
+                                        .weight(1f)
+                                ) {
+                                    //                            fuctionality
+                                }
                             }
                         }
                     }
