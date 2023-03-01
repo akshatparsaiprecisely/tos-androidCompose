@@ -19,8 +19,8 @@ import androidx.compose.ui.unit.sp
 import com.example.tos_androidcompose.DashboardButtons
 import com.example.tos_androidcompose.R
 import com.example.tos_androidcompose.ui.theme.Orange
-import com.example.tos_androidcompose.ui.theme.Purple200
 import com.example.tos_androidcompose.ui.theme.TosandroidComposeTheme
+import com.example.tos_androidcompose.ui.theme.colorPrimary
 
 class DashboardActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,98 +31,114 @@ class DashboardActivity : ComponentActivity() {
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
-                        .background(color = Purple200)
+                        .background(color = colorPrimary)
                 ) {
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(500.dp)
+                            .height(580.dp)
                             .background(Color.White)
                             .align(Alignment.BottomCenter),
                         verticalArrangement = Arrangement.spacedBy(10.dp),
                     ) {}
-                    BoxWithConstraints(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(200.dp)
-                            .padding(50.dp)
-                            .align(alignment = BiasAlignment(0f, -0.37f))
-                    ) {
-                        val borderRadius = 16.dp
-                        val borderStrokeWidth = 1.dp
-
-                        Box(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .clip(RoundedCornerShape(borderRadius))
-                                .border(
-                                    borderStrokeWidth,
-                                    Color.Black,
-                                    RoundedCornerShape(borderRadius)
-                                )
-                                .background(Color.White)
-                        ) {
-                            // Content of the box goes here
-                        }
-                    }
 
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .background(Color.White)
-                            .align(alignment = BiasAlignment(0f, 0.1f)),
+                            .align(alignment = BiasAlignment(0f, -0.37f)),
                         verticalArrangement = Arrangement.spacedBy(10.dp),
                     ) {
-                        Row(
+
+
+                        BoxWithConstraints(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(20.dp),
-                            horizontalArrangement = Arrangement.spacedBy(10.dp)
+                                .height(200.dp)
+                                .padding(50.dp)
                         ) {
-                            DashboardButtons(
-                                symbol = "Projects",
-                                color = Purple200,
+                            val borderRadius = 16.dp
+                            val borderStrokeWidth = 1.dp
+
+                            Box(
                                 modifier = Modifier
-                                    .aspectRatio(1f)
-                                    .weight(1f)
+                                    .fillMaxSize()
+                                    .clip(RoundedCornerShape(borderRadius))
+                                    .border(
+                                        borderStrokeWidth,
+                                        Color.Black,
+                                        RoundedCornerShape(borderRadius)
+                                    )
+                                    .background(Color.White)
                             ) {
-//                            fuctionality
-                            }
-                            DashboardButtons(
-                                image = painterResource(id = R.drawable.notification),
-                                symbol = "Notifiction",
-                                color = Color.Green,
-                                modifier = Modifier
-                                    .aspectRatio(1f)
-                                    .weight(1f)
-                            ) {
-                                //                            fuctionality
-                            }
-                            DashboardButtons(
-                                image = painterResource(id = R.drawable.chat),
-                                symbol = "Chats",
-                                color = Orange,
-                                modifier = Modifier
-                                    .aspectRatio(1f)
-                                    .weight(1f)
-                            ) {
-                                //                            fuctionality
+                                // Content of the box goes here
                             }
                         }
-                        
-                        Column(modifier = Modifier
-                            .fillMaxWidth()
-                            .background(Color.White),
-                            verticalArrangement = Arrangement.spacedBy(10.dp),) {
-                            Text(
-                                text = "Data Stats",
-                                fontSize = 20.sp,
-                                color = Color.Black
-                            )
-                            Row (modifier = Modifier
+
+                        Column(
+                            modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(20.dp),
-                                horizontalArrangement = Arrangement.spacedBy(10.dp)){
+                                .background(Color.White),
+                            verticalArrangement = Arrangement.spacedBy(10.dp),
+                        ) {
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(20.dp),
+                                horizontalArrangement = Arrangement.spacedBy(10.dp)
+                            ) {
+                                DashboardButtons(
+                                    symbol = getString(R.string.Projects),
+                                    color = colorPrimary,
+                                    modifier = Modifier
+                                        .aspectRatio(1f)
+                                        .weight(1f)
+                                ) {
+//                            fuctionality
+                                }
+                                DashboardButtons(
+                                    image = painterResource(id = R.drawable.notification),
+                                    symbol = getString(R.string.Notifiction),
+                                    color = Color.Green,
+                                    modifier = Modifier
+                                        .aspectRatio(1f)
+                                        .weight(1f)
+                                ) {
+                                    //                            fuctionality
+                                }
+                                DashboardButtons(
+                                    image = painterResource(id = R.drawable.chat),
+                                    symbol = getString(R.string.Chats),
+                                    color = Orange,
+                                    modifier = Modifier
+                                        .aspectRatio(1f)
+                                        .weight(1f)
+                                ) {
+                                    //                            fuctionality
+                                }
+                            }
+
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .background(Color.White)
+                                    .padding(start = 16.dp),
+                                verticalArrangement = Arrangement.spacedBy(10.dp),
+                            ) {
+                                Text(
+                                    modifier = Modifier
+                                        .padding(start = 16.dp),
+                                    text = "Data Stats",
+                                    fontSize = 20.sp,
+                                    color = Color.Black
+                                )
+                            }
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(20.dp),
+                                horizontalArrangement = Arrangement.spacedBy(10.dp)
+                            ) {
+
                             }
                         }
                     }
