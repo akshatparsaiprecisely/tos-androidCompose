@@ -3,4 +3,7 @@
     <string name="Projects">Projects</string>
     <string name="Notifiction">Notifiction</string>
     <string name="Chats">Chats</string>
+    <string name="pending">Pending</string>
+    <string name="approved">Approved</string>
+    <string name="collected">Collected</string>
 </resources>
