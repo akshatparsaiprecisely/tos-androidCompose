@@ -1,6 +1,7 @@
 package com.example.tos_androidcompose.ui.dashboard
 
 import android.annotation.SuppressLint
+import android.media.Image
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -33,10 +34,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.tos_androidcompose.DashboardButtons
 import com.example.tos_androidcompose.R
-import com.example.tos_androidcompose.ui.theme.DataStatsButtons
-import com.example.tos_androidcompose.ui.theme.Orange
-import com.example.tos_androidcompose.ui.theme.TosandroidComposeTheme
-import com.example.tos_androidcompose.ui.theme.colorPrimary
+import com.example.tos_androidcompose.ui.theme.*
 import kotlinx.coroutines.launch
 
 class DashboardActivity : ComponentActivity() {
@@ -89,6 +87,59 @@ class DashboardActivity : ComponentActivity() {
                 Column(
                     modifier = Modifier.background(Color.White)
                 ) {
+                    Box(
+                        modifier = Modifier
+                            .height(150.dp)
+                            .fillMaxWidth()
+                            .background(color = colorPrimaryDark)
+                    ) {
+                        val borderRadius = 16.dp
+                        val borderStrokeWidth = .01.dp
+                            Row(modifier = Modifier
+                                .background(colorPrimaryDark)
+                                .align(Alignment.Center),
+                                horizontalArrangement = Arrangement.spacedBy(20.dp)
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .clip(CircleShape)
+                                        .border(
+                                            borderStrokeWidth,
+                                            Color.Black,
+                                            RoundedCornerShape(borderRadius)
+                                        )
+                                        .weight(1f)
+                                        .height(84.dp)
+                                        .background(Color.White)
+                                        .padding(25.dp),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Image(painter = painterResource(id = R.drawable.ic_baseline_folder_open_24),
+                                        contentDescription = "aa")
+                                }
+                                Column(modifier = Modifier
+                                    .weight(2.7f)
+                                    .fillMaxHeight()
+                                    .padding(20.dp)
+                                ) {
+                                    Text(
+                                        text = "Tossuer",
+                                        fontSize = 20.sp,
+                                        color = colorPrimary
+                                    )
+                                    Text(
+                                        text = "Project assigned: 9",
+                                        fontSize = 11.sp,
+                                        color = Color.Gray
+                                    )
+                                    Text(
+                                        text = "Last Login",
+                                        fontSize = 11.sp,
+                                        color = Color.Gray
+                                    )
+                                }
+                            }
+                    }
                     drawerItems.forEach { screen ->
                         Text(
                             text = screen.title,
@@ -126,12 +177,14 @@ class DashboardActivity : ComponentActivity() {
                         ) {
 
                             Image(painter = painterResource(id = R.drawable.navigation_menu), contentDescription = "nav",
-                                Modifier.padding(20.dp)
+                                Modifier
+                                    .padding(20.dp)
                                     .clickable { isDrawerVisible.value = true },
                                 alignment = Alignment.TopStart)
 
                             Image(painter = painterResource(id = R.drawable.precisely_logo_white), contentDescription = "nav",
-                                Modifier.padding(top = 40.dp)
+                                Modifier
+                                    .padding(top = 40.dp)
                                     .height(100.dp)
                                     .width(100.dp)
                                     .align(Alignment.TopCenter))
@@ -331,7 +384,7 @@ class DashboardActivity : ComponentActivity() {
 
 
     sealed class Screen(val route: String, val title: String) {
-        object Home : Screen("home", "Home")
+        object Home : Screen("home" ,"Home")
         object Settings : Screen("settings", "Settings")
         object About : Screen("ABOUT", "ABOUT")
         object Logout : Screen("LOGOUT", "LOGOUT")
