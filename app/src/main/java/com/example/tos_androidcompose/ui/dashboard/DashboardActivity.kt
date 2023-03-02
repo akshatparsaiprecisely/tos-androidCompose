@@ -23,6 +23,7 @@ import androidx.compose.ui.BiasAlignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -142,18 +143,22 @@ class DashboardActivity : ComponentActivity() {
                             }
                     }
                     drawerItems.forEach { screen ->
-                        Text(
-                            text = screen.title,
-                            modifier = Modifier
-                                .clickable {
-                                    navController.navigate(screen.route) {
-                                        popUpTo(navController.graph.startDestinationId)
-                                        launchSingleTop = true
-                                    }
+                        Row(horizontalArrangement = Arrangement.spacedBy(20.dp),
+                        modifier = Modifier
+                            .clickable {
+                                navController.navigate(screen.route) {
+                                    popUpTo(navController.graph.startDestinationId)
+                                    launchSingleTop = true
                                 }
-                                .fillMaxWidth()
-                                .padding(16.dp)
-                        )
+                            }
+                            .fillMaxWidth()
+                            .padding(16.dp)) {
+                            Image(painter = painterResource(id = screen.id), contentDescription = "aa" )
+                            Text(
+                                text = screen.title,
+                            )
+                        }
+
                     }
                 }
             },
@@ -391,9 +396,9 @@ class DashboardActivity : ComponentActivity() {
     }
 
 
-    sealed class Screen(val route: String, val title: String) {
-        object Home : Screen("home" ,"Home")
-        object Settings : Screen("settings", "Settings")
-        object About : Screen("ABOUT", "ABOUT")
-        object Logout : Screen("LOGOUT", "LOGOUT")
+    sealed class Screen(val route: String, val title: String, val id: Int) {
+        object Home : Screen("home" ,"Home", R.drawable.menu_home)
+        object Settings : Screen("settings", "Settings", R.drawable.menu_settings)
+        object About : Screen("ABOUT", "ABOUT", R.drawable.menu_about_24)
+        object Logout : Screen("LOGOUT", "LOGOUT", R.drawable.menu_logout_24)
     }

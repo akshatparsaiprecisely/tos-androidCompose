@@ -3,9 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../layout/compose-model-1677739363353.xml" value="0.13425925925925927" />
         <entry key="app/src/main/res/drawable/chat.xml" value="0.145" />
         <entry key="app/src/main/res/drawable/ic_baseline_folder_open_24.xml" value="0.145" />
         <entry key="app/src/main/res/drawable/ic_baseline_notifications_active_24.xml" value="0.145" />
+        <entry key="app/src/main/res/drawable/menu_about_24.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/menu_home.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/menu_logout_24.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/menu_settings.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/navigation_menu.xml" value="0.145" />
       </map>
     </option>
