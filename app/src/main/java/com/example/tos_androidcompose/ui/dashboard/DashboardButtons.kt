@@ -7,6 +7,8 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -46,13 +48,21 @@ fun DashboardButtons(
             .clickable {
                 onClick()
             }
-                .then(modifier),
+            .then(modifier),
     ) {
-        Column {
-            Image(
-                painter = image,
-                contentDescription = symbol,
-                alignment = Alignment.Center)
+        Column(
+            modifier = Modifier
+                .background(Color.White)
+                .align(Alignment.Center)
+                .padding(10.dp)
+        ) {
+            Row(modifier = Modifier.padding()
+                .align(Alignment.CenterHorizontally)) {
+                Image(
+                    painter = image,
+                    contentDescription = symbol,
+                    alignment = Alignment.Center)
+            }
             Text(
                 text = symbol,
                 style = textStyle,

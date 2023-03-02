@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
@@ -30,13 +31,17 @@ fun DataStatsButtons(
     onClick: () -> Unit
 ) {
     val borderRadius = 16.dp
-    val borderStrokeWidth = 0.1.dp
+    val borderStrokeWidth = 0.01.dp
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
             .background(Color.White)
             .clip(RoundedCornerShape(borderRadius))
-            .border(borderStrokeWidth, Color.Black, RoundedCornerShape(borderRadius))
+            .border(
+                borderStrokeWidth,
+                Color.Gray,
+                RoundedCornerShape(borderRadius)
+            )
             .clickable(enabled = false) {
                 onClick()
             }
