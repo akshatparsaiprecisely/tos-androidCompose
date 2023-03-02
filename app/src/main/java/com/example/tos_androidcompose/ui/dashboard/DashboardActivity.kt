@@ -90,7 +90,7 @@ class DashboardActivity : ComponentActivity() {
                 ) {
                     Box(
                         modifier = Modifier
-                            .height(150.dp)
+                            .height(120.dp)
                             .fillMaxWidth()
                             .background(color = colorPrimaryDark)
                     ) {
@@ -112,6 +112,7 @@ class DashboardActivity : ComponentActivity() {
                                         )
                                         .weight(1f)
                                         .height(84.dp)
+                                        .size(5.dp)
                                         .background(Color.White)
                                         .padding(25.dp),
                                     contentAlignment = Alignment.Center
@@ -142,6 +143,7 @@ class DashboardActivity : ComponentActivity() {
                                 }
                             }
                     }
+                    Box(modifier = Modifier.padding(top = 20.dp))
                     drawerItems.forEach { screen ->
                         Row(horizontalArrangement = Arrangement.spacedBy(20.dp),
                         modifier = Modifier
@@ -303,7 +305,7 @@ class DashboardActivity : ComponentActivity() {
                                             modifier = Modifier
                                                 .aspectRatio(1f)
                                                 .weight(1f)
-                                                .padding(10.dp)
+                                                .padding(10.dp),
                                         ) {
 //                            fuctionality
                                         }

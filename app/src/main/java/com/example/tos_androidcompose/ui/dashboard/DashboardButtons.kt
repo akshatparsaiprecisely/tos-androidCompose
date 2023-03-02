@@ -46,7 +46,7 @@ fun DashboardButtons(
             .clickable {
                 onClick()
             }
-            .then(modifier)
+                .then(modifier),
     ) {
         Column {
             Image(
