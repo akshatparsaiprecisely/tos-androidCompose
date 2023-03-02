@@ -97,7 +97,8 @@ class DashboardActivity : ComponentActivity() {
                         val borderStrokeWidth = .01.dp
                             Row(modifier = Modifier
                                 .background(colorPrimaryDark)
-                                .align(Alignment.Center),
+                                .align(Alignment.Center)
+                                .padding(top = 20.dp, start = 10.dp),
                                 horizontalArrangement = Arrangement.spacedBy(20.dp)
                             ) {
                                 Box(
@@ -120,7 +121,7 @@ class DashboardActivity : ComponentActivity() {
                                 Column(modifier = Modifier
                                     .weight(2.7f)
                                     .fillMaxHeight()
-                                    .padding(20.dp)
+                                    .padding(10.dp)
                                 ) {
                                     Text(
                                         text = "Tossuer",
@@ -150,6 +151,7 @@ class DashboardActivity : ComponentActivity() {
                                         launchSingleTop = true
                                     }
                                 }
+                                .fillMaxWidth()
                                 .padding(16.dp)
                         )
                     }
@@ -169,7 +171,15 @@ class DashboardActivity : ComponentActivity() {
                             composable(Screen.Settings.route) {
                                 // Composable for the settings screen
                             }
+                            composable(Screen.About.route) {
+                                // Composable for the settings screen
+                            }
+                            composable(Screen.Logout.route) {
+                                // Composable for the settings screen
+                            }
                         }
+
+                    // Dashboard Content
                         Box(
                             modifier = Modifier
                                 .fillMaxSize()
@@ -200,15 +210,15 @@ class DashboardActivity : ComponentActivity() {
                             Column(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .align(alignment = BiasAlignment(0f, -0.14f)),
+                                    .align(alignment = BiasAlignment(0f, -0.34f)),
                             ) {
 
 
                                 BoxWithConstraints(
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .height(200.dp)
-                                        .padding(50.dp)
+                                        .height(127.dp)
+                                        .padding(start = 30.dp, end = 30.dp, top = 20.dp)
                                 ) {
                                     val borderRadius = 16.dp
                                     val borderStrokeWidth = .01.dp
@@ -279,7 +289,7 @@ class DashboardActivity : ComponentActivity() {
                                     Row(
                                         modifier = Modifier
                                             .fillMaxWidth()
-                                            .padding(30.dp),
+                                            .padding(start = 30.dp, end = 30.dp, top = 10.dp),
                                         horizontalArrangement = Arrangement.spacedBy(20.dp)
                                     ) {
                                         DashboardButtons(
@@ -318,11 +328,9 @@ class DashboardActivity : ComponentActivity() {
                                         modifier = Modifier
                                             .fillMaxWidth()
                                             .background(Color.White)
-                                            .padding(start = 10.dp),
+                                            .padding(start = 30.dp, end = 30.dp, top = 20.dp),
                                     ) {
                                         Text(
-                                            modifier = Modifier
-                                                .padding(start = 16.dp),
                                             text = "Data Stats",
                                             fontSize = 20.sp,
                                             color = Color.Black
@@ -331,7 +339,7 @@ class DashboardActivity : ComponentActivity() {
                                     Row(
                                         modifier = Modifier
                                             .fillMaxWidth()
-                                            .padding(30.dp),
+                                            .padding(start = 30.dp, end = 30.dp, top = 20.dp),
                                         horizontalArrangement = Arrangement.spacedBy(20.dp)
                                     ) {
                                         DataStatsButtons(

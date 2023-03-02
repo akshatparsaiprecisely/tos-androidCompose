@@ -37,7 +37,7 @@ fun DataStatsButtons(
             .background(Color.White)
             .clip(RoundedCornerShape(borderRadius))
             .border(borderStrokeWidth, Color.Black, RoundedCornerShape(borderRadius))
-            .clickable {
+            .clickable(enabled = false) {
                 onClick()
             }
             .then(modifier)
