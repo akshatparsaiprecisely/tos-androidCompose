@@ -31,6 +31,7 @@ import com.example.tos_androidcompose.DashboardButtons
 import com.example.tos_androidcompose.R
 import com.example.tos_androidcompose.ui.theme.*
 import com.example.tos_androidcompose.ui.utils.AppConstants
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class DashboardActivity : ComponentActivity() {
@@ -77,6 +78,7 @@ class DashboardActivity : ComponentActivity() {
         }
 
         Scaffold(
+            scaffoldState = scaffoldState,
             topBar = {
 
             },
@@ -129,7 +131,7 @@ class DashboardActivity : ComponentActivity() {
                                 Text(
                                     text = "Tossuer",
                                     fontSize = 20.sp,
-                                    color = colorPrimary
+                                    color = Color.White
                                 )
                                 Text(
                                     text = "Project assigned: 9",
@@ -202,7 +204,9 @@ class DashboardActivity : ComponentActivity() {
                             contentDescription = "nav",
                             Modifier
                                 .padding(20.dp)
-                                .clickable { isDrawerVisible = !isDrawerVisible },
+                                .clickable { scope.async {
+                                    scaffoldState.drawerState.open()
+                                } },
                             alignment = Alignment.TopStart
                         )
 
