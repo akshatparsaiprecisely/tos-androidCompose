@@ -31,7 +31,6 @@ import com.example.tos_androidcompose.DashboardButtons
 import com.example.tos_androidcompose.R
 import com.example.tos_androidcompose.ui.theme.*
 import com.example.tos_androidcompose.ui.utils.AppConstants
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class DashboardActivity : ComponentActivity() {
@@ -52,7 +51,6 @@ class DashboardActivity : ComponentActivity() {
     @Composable
     fun MyDrawer() {
         val navController = rememberNavController()
-
         val drawerItems = listOf(
             Screen.Home,
             Screen.Settings,
@@ -61,21 +59,6 @@ class DashboardActivity : ComponentActivity() {
         )
         val scaffoldState = rememberScaffoldState()
         val scope = rememberCoroutineScope()
-        var isDrawerVisible by remember {
-            mutableStateOf(false)
-        }
-
-        val openDrawer = LaunchedEffect(isDrawerVisible) {
-            if (isDrawerVisible) {
-                scope.launch {
-                    scaffoldState.drawerState.open()
-                }
-            } else {
-                scope.launch {
-                    scaffoldState.drawerState.close()
-                }
-            }
-        }
 
         Scaffold(
             scaffoldState = scaffoldState,
@@ -204,7 +187,7 @@ class DashboardActivity : ComponentActivity() {
                             contentDescription = "nav",
                             Modifier
                                 .padding(20.dp)
-                                .clickable { scope.async {
+                                .clickable { scope.launch {
                                     scaffoldState.drawerState.open()
                                 } },
                             alignment = Alignment.TopStart
