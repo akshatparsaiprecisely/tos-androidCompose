@@ -1,5 +1,6 @@
 package com.example.tos_androidcompose.ui.dashboard
 
+import android.graphics.Paint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -7,6 +8,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -14,6 +16,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight.Companion.Bold
+import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -25,7 +31,6 @@ fun DrawerContent(
     drawerItems: List<Screen>,
     navController: NavHostController,
 ) {
-
     Column(
     modifier = Modifier.background(Color.White)
     ) {
@@ -88,9 +93,9 @@ fun DrawerContent(
                 }
             }
         }
-        Box(modifier = Modifier.padding(top = 20.dp))
+        Spacer(modifier = Modifier.size(5.dp))
         drawerItems.forEach { screen ->
-            Row(horizontalArrangement = Arrangement.spacedBy(20.dp),
+            Row(horizontalArrangement = Arrangement.spacedBy(30.dp),
                 modifier = Modifier
                     .clickable {
                         navController.navigate(screen.route) {
@@ -101,14 +106,18 @@ fun DrawerContent(
                     .fillMaxWidth()
                     .padding(16.dp)) {
                 Image(
+                    modifier = Modifier
+                        .size(20.dp)
+                        .align(Alignment.CenterVertically),
                     painter = painterResource(id = screen.id),
                     contentDescription = "aa"
                 )
                 Text(
                     text = screen.title,
+                    style = TextStyle(fontWeight = Bold, color = Color.Gray),
+                    fontSize = 14.sp
                 )
             }
-
         }
     }
 }
