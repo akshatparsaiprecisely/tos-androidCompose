@@ -1,5 +1,8 @@
 package com.example.tos_androidcompose.ui.dashboard
 
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -22,16 +25,22 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavDestination
+import androidx.navigation.NavGraph
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.tos_androidcompose.DashboardButtons
 import com.example.tos_androidcompose.R
+import com.example.tos_androidcompose.ui.chats.ChatScreen
+import com.example.tos_androidcompose.ui.notifiction.NotificationScreen
+import com.example.tos_androidcompose.ui.projects.ProjectScreen
 import com.example.tos_androidcompose.ui.theme.DataStatsButtons
 import com.example.tos_androidcompose.ui.theme.Orange
 import com.example.tos_androidcompose.ui.theme.TosandroidComposeTheme
@@ -50,9 +59,10 @@ class DashboardActivity : ComponentActivity() {
             }
 
         }
-
     }
 
+
+    @SuppressLint("CoroutineCreationDuringComposition")
     @Composable
     fun DashboardScreen() {
         val navController = rememberNavController()
@@ -64,6 +74,7 @@ class DashboardActivity : ComponentActivity() {
         )
         val scaffoldState = rememberScaffoldState()
         val scope = rememberCoroutineScope()
+        val activity = LocalContext.current as Activity
 
         fun customDrawerShape() = object : Shape {
             override fun createOutline(
@@ -83,23 +94,30 @@ class DashboardActivity : ComponentActivity() {
                 DrawerContent(drawerItems = drawerItems, navController = navController)
             },
             content = {
-                NavHost(
-                    navController = navController,
-                    startDestination = Screen.Home.route,
-                ) {
-                    composable(Screen.Home.route) {
-                        // Composable for the home screen
-                    }
-                    composable(Screen.Settings.route) {
-                        // Composable for the settings screen
-                    }
-                    composable(Screen.About.route) {
-                        // Composable for the settings screen
-                    }
-                    composable(Screen.Logout.route) {
-                        // Composable for the settings screen
+                @Composable
+                fun navScreens() {
+                    NavHost(
+                        navController = navController,
+                        startDestination = Screen.Home.route,
+                    ) {
+                        composable(Screen.Home.route) {
+                            scope.launch {
+                                scaffoldState.drawerState.close()
+                            }
+                            // Composable for the home screen
+                        }
+                        composable(Screen.Settings.route) {
+                            // Composable for the settings screen
+                        }
+                        composable(Screen.About.route) {
+                            // Composable for the settings screen
+                        }
+                        composable(Screen.Logout.route) {
+                            // Composable for the settings screen
+                        }
                     }
                 }
+                navScreens()
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
@@ -155,8 +173,6 @@ class DashboardActivity : ComponentActivity() {
                                     shape = RoundedCornerShape(borderRadius)
                                 )
                         ) {
-
-
                             Box(
                                 modifier = Modifier
                                     .fillMaxSize()
@@ -230,6 +246,8 @@ class DashboardActivity : ComponentActivity() {
                                         .padding(10.dp),
                                 ) {
 //                            fuctionality
+                                    activity.startActivity(Intent(this@DashboardActivity,
+                                        ProjectScreen::class.java))
                                 }
                                 DashboardButtons(
                                     image = painterResource(id = R.drawable.notification),
@@ -239,6 +257,8 @@ class DashboardActivity : ComponentActivity() {
                                         .aspectRatio(1f)
                                         .weight(1f)
                                 ) {
+                                    activity.startActivity(Intent(this@DashboardActivity,
+                                        NotificationScreen::class.java))
                                     //                            fuctionality
                                 }
                                 DashboardButtons(
@@ -249,7 +269,8 @@ class DashboardActivity : ComponentActivity() {
                                         .aspectRatio(1f)
                                         .weight(1f)
                                 ) {
-                                    //                            fuctionality
+                                    activity.startActivity(Intent(this@DashboardActivity,
+                                        ChatScreen::class.java))
                                 }
                             }
 

@@ -34,7 +34,6 @@ fun DashboardButtons(
     color: Color = Color.White,
     textStyle: TextStyle = TextStyle(),
     image: Painter = painterResource(id = R.drawable.ic_baseline_folder_open_24),
-
     onClick: () -> Unit
 ) {
     val borderRadius = 16.dp

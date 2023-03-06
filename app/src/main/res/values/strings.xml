@@ -7,4 +7,14 @@
     <string name="approved">Approved</string>
     <string name="collected">Collected</string>
     <string name="title_activity_project">ProjectActivity</string>
+    <string name="title_activity_chat_screen">ChatScreen</string>
+    <string name="title_activity_project_screen">ProjectScreen</string>
+    <string name="title_activity_notification_screen">NotificationScreen</string>
+    <string name="title_activity_login_screen">LoginScreen</string>
+    <string name="map_reveal">Map Reveal</string>
+    <string name="geographical_information_system">Geographical Information System</string>
+    <string name="login_username">Email</string>
+    <string name="login_password">Password</string>
+    <string name="organisation_id_mandatory">Organization ID</string>
+    <string name="forgot_password">Forgot password?</string>
 </resources>
