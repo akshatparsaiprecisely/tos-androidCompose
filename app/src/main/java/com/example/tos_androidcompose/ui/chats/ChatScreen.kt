@@ -3,14 +3,18 @@ package com.example.tos_androidcompose.ui.chats
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.example.tos_androidcompose.R
 import com.example.tos_androidcompose.ui.chats.ui.theme.TosandroidComposeTheme
+import com.example.tos_androidcompose.ui.common.AppBar
 
 class ChatScreen : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,11 +22,15 @@ class ChatScreen : ComponentActivity() {
         setContent {
             TosandroidComposeTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Greeting("Android")
+                setContent {
+                    Column(modifier = Modifier.fillMaxSize()) {
+                        AppBar(
+                            title = getString(R.string.chats),
+                            onRefresh = { /*TODO*/ },
+                            onBackPressed = { onBackPressed() })
+                        val items = listOf("Item 1", "Item 2", "Item 3", "Item 4")
+                        com.example.tos_androidcompose.ui.projects.MyRecyclerView(items)
+                    }
                 }
             }
         }
@@ -30,14 +38,10 @@ class ChatScreen : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    TosandroidComposeTheme {
-        Greeting("Android")
+fun MyRecyclerView(items: List<String>) {
+    LazyColumn {
+        items(items = items) { item ->
+            Text(text = item, modifier = Modifier.padding(16.dp))
+        }
     }
 }

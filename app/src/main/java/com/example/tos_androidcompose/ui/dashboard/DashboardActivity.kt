@@ -31,8 +31,6 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavDestination
-import androidx.navigation.NavGraph
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -62,7 +60,7 @@ class DashboardActivity : ComponentActivity() {
     }
 
 
-    @SuppressLint("CoroutineCreationDuringComposition")
+    @SuppressLint("CoroutineCreationDuringComposition", "UnusedMaterialScaffoldPaddingParameter")
     @Composable
     fun DashboardScreen() {
         val navController = rememberNavController()
@@ -238,7 +236,7 @@ class DashboardActivity : ComponentActivity() {
                                 horizontalArrangement = Arrangement.spacedBy(20.dp)
                             ) {
                                 DashboardButtons(
-                                    symbol = getString(R.string.Projects),
+                                    symbol = getString(R.string.projects),
                                     color = colorPrimary,
                                     modifier = Modifier
                                         .aspectRatio(1f)
@@ -251,7 +249,7 @@ class DashboardActivity : ComponentActivity() {
                                 }
                                 DashboardButtons(
                                     image = painterResource(id = R.drawable.notification),
-                                    symbol = getString(R.string.Notifiction),
+                                    symbol = getString(R.string.notification),
                                     color = Color.Green,
                                     modifier = Modifier
                                         .aspectRatio(1f)
@@ -263,7 +261,7 @@ class DashboardActivity : ComponentActivity() {
                                 }
                                 DashboardButtons(
                                     image = painterResource(id = R.drawable.chat),
-                                    symbol = getString(R.string.Chats),
+                                    symbol = getString(R.string.chats),
                                     color = Orange,
                                     modifier = Modifier
                                         .aspectRatio(1f)

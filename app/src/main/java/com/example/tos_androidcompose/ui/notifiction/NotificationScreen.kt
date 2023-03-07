@@ -3,41 +3,26 @@ package com.example.tos_androidcompose.ui.notifiction
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import com.example.tos_androidcompose.R
 import com.example.tos_androidcompose.ui.chats.ui.theme.TosandroidComposeTheme
+import com.example.tos_androidcompose.ui.common.AppBar
+import com.example.tos_androidcompose.ui.projects.MyRecyclerView
 
 class NotificationScreen : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            TosandroidComposeTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
-                    Greeting3("Android")
-                }
+            Column(modifier = Modifier.fillMaxSize()) {
+                AppBar(
+                    title = getString(R.string.notification),
+                    onRefresh = { /*TODO*/ },
+                    onBackPressed = { onBackPressed() })
+                val items = listOf("Item 1", "Item 2", "Item 3","Item 4")
+                MyRecyclerView(items)
             }
         }
-    }
-}
-
-@Composable
-fun Greeting3(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview3() {
-    TosandroidComposeTheme {
-        Greeting3("Android")
     }
 }

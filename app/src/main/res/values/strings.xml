@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">tos-androidCompose</string>
-    <string name="Projects">Projects</string>
-    <string name="Notifiction">Notifiction</string>
-    <string name="Chats">Chats</string>
+    <string name="projects">Projects</string>
+    <string name="notification">Notification</string>
+    <string name="chats">Chats</string>
     <string name="pending">Pending</string>
     <string name="approved">Approved</string>
     <string name="collected">Collected</string>

@@ -1,10 +1,12 @@
 package com.example.tos_androidcompose.ui.login
 import android.os.Bundle
+import android.provider.SyncStateContract.Columns
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -18,6 +20,9 @@ import com.example.tos_androidcompose.ui.chats.ui.theme.TosandroidComposeTheme
 import com.example.tos_androidcompose.ui.theme.colorPrimary
 import androidx.compose.material.TextField
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 
 class LoginScreen : ComponentActivity() {
@@ -35,22 +40,29 @@ class LoginScreen : ComponentActivity() {
     @Composable
     fun LoginContent() {
         var textValue by remember { mutableStateOf("") }
-        Box(modifier = Modifier.fillMaxSize() ) {
-            Image(
-                painter = painterResource(id = R.drawable.precisely_bg),
-                contentDescription = "login background",
-                modifier = Modifier.fillMaxSize()
-            )
+        Image(
+            painter = painterResource(id = R.drawable.precisely_bg),
+            contentDescription = "login background",
+            modifier = Modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop
+        )
+        BoxWithConstraints(modifier = Modifier.fillMaxWidth().
+        padding(top = 20.dp, start = 20.dp, end = 20.dp)) {
+
+            val borderRadius = 16.dp
+            val borderStrokeWidth = 2.dp
+
             Column(modifier = Modifier
                 .background(Color.White)
                 .fillMaxWidth()
-                .height(700.dp)
-                .padding(20.dp))
+            )
             {
                 Image(
                     painter = painterResource(id = R.drawable.precisely_logo),
                     contentDescription = "login background",
-                    modifier = Modifier.size(40.dp)
+                    modifier = Modifier
+                        .size(40.dp)
+                        .align(Alignment.CenterHorizontally)
                 )
                 Text(
                     text = getString(R.string.map_reveal),
@@ -113,11 +125,10 @@ class LoginScreen : ComponentActivity() {
                 )
                 Button(onClick = { /*TODO*/ },
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight()) {
-
+                    .width(200.dp)
+                    .height(70.dp)
+                    .align(Alignment.CenterHorizontally)) {
                 }
-
             }
         }
     }
