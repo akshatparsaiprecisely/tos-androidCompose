@@ -29,7 +29,7 @@ class ChatScreen : ComponentActivity() {
                             onRefresh = { /*TODO*/ },
                             onBackPressed = { onBackPressed() })
                         val items = listOf("Item 1", "Item 2", "Item 3", "Item 4")
-                        com.example.tos_androidcompose.ui.projects.MyRecyclerView(items)
+                        MyRecyclerView(items)
                     }
                 }
             }

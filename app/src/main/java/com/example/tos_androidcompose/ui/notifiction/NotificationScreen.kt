@@ -9,7 +9,6 @@ import androidx.compose.ui.Modifier
 import com.example.tos_androidcompose.R
 import com.example.tos_androidcompose.ui.chats.ui.theme.TosandroidComposeTheme
 import com.example.tos_androidcompose.ui.common.AppBar
-import com.example.tos_androidcompose.ui.projects.MyRecyclerView
 
 class NotificationScreen : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +20,6 @@ class NotificationScreen : ComponentActivity() {
                     onRefresh = { /*TODO*/ },
                     onBackPressed = { onBackPressed() })
                 val items = listOf("Item 1", "Item 2", "Item 3","Item 4")
-                MyRecyclerView(items)
             }
         }
     }

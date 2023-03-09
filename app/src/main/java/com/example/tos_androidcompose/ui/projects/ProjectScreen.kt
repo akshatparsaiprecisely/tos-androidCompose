@@ -5,16 +5,12 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import com.example.tos_androidcompose.R
 import com.example.tos_androidcompose.ui.chats.ui.theme.TosandroidComposeTheme
 import com.example.tos_androidcompose.ui.common.AppBar
+import com.example.tos_androidcompose.ui.model.projects.Project
+import com.example.tos_androidcompose.ui.viewholder.ProjectListViewHolder
 
 class ProjectScreen : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,8 +24,12 @@ class ProjectScreen : ComponentActivity() {
                             title = getString(R.string.projects),
                             onRefresh = { /*TODO*/ },
                             onBackPressed = { onBackPressed() })
-                        val items = listOf("Item 1", "Item 2", "Item 3","Item 4")
-                        MyRecyclerView(items)
+                        val items = mutableListOf<Project>()
+                        items.add(Project("11", "New project", "23"))
+                        items.add(Project("11", "New project", "23"))
+                        items.add(Project("11", "New project", "23"))
+                        items.add(Project("11", "New project", "23"))
+                        ProjectListViewHolder(items)
                     }
                 }
 
@@ -38,14 +38,7 @@ class ProjectScreen : ComponentActivity() {
     }
 }
 
-@Composable
-fun MyRecyclerView(items: List<String>) {
-    LazyColumn {
-        items(items = items) { item ->
-            Text(text = item, modifier = Modifier.padding(16.dp))
-        }
-    }
-}
+
 
 
 
