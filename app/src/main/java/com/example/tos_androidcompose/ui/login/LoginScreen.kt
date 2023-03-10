@@ -1,25 +1,33 @@
 package com.example.tos_androidcompose.ui.login
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.tos_androidcompose.R
+import com.example.tos_androidcompose.ui.chats.ChatScreen
 import com.example.tos_androidcompose.ui.chats.ui.theme.TosandroidComposeTheme
+import com.example.tos_androidcompose.ui.dashboard.DashboardActivity
 import com.example.tos_androidcompose.ui.theme.colorPrimary
 
 class LoginScreen : ComponentActivity() {
@@ -37,7 +45,10 @@ class LoginScreen : ComponentActivity() {
     @Preview()
     @Composable
     fun LoginContent() {
+        val activity = LocalContext.current as Activity
         var textValue by remember { mutableStateOf("") }
+        val borderRadius = 16.dp
+        val borderStrokeWidth = 2.dp
         Image(
             painter = painterResource(id = R.drawable.precisely_bg),
             contentDescription = "login background",
@@ -49,6 +60,10 @@ class LoginScreen : ComponentActivity() {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 20.dp, start = 20.dp, end = 20.dp)
+                .shadow(
+                    borderStrokeWidth,
+                    shape = RoundedCornerShape(borderRadius)
+                )
         ) {
             Column(
                 modifier = Modifier
@@ -128,15 +143,17 @@ class LoginScreen : ComponentActivity() {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(20.dp)
-                        .align(Alignment.End)
+                        .align(Alignment.Start)
                 )
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = { activity.startActivity(
+                        Intent(this@LoginScreen,
+                            DashboardActivity::class.java)) },
                     modifier = Modifier
                         .width(200.dp)
                         .height(70.dp)
                         .align(Alignment.CenterHorizontally)
-                        .padding(20.dp)
+                        .padding(20.dp),
                 ) {
                 }
             }

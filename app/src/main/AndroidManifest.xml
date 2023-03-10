@@ -17,7 +17,13 @@
             android:name=".ui.login.LoginScreen"
             android:exported="true"
             android:label="@string/title_activity_login_screen"
-            android:theme="@style/Theme.TosandroidCompose"/>
+            android:theme="@style/Theme.TosandroidCompose">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.notifiction.NotificationScreen"
             android:exported="true"
@@ -36,14 +42,8 @@
         <activity
             android:name=".ui.dashboard.DashboardActivity"
             android:exported="true"
-            android:theme="@style/Theme.TosandroidCompose">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:theme="@style/Theme.TosandroidCompose"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
     </application>
 
 </manifest>
