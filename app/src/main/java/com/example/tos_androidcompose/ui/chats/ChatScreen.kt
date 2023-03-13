@@ -29,8 +29,8 @@ class ChatScreen : ComponentActivity() {
                         AppBar(
                             Icons.Default.Search,
                             title = getString(R.string.chats),
-                            onRefresh = { /*TODO*/ },
-                            onBackPressed = { onBackPressed() })
+                            onRefresh = { /*TODO*/ }
+                        ) { onBackPressed() }
                         val items = listOf("Item 1", "Item 2", "Item 3", "Item 4")
                         MyRecyclerView(items)
                     }

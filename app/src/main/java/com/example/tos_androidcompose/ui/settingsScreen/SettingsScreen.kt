@@ -38,8 +38,8 @@ class SettingsScreen() : ComponentActivity() {
             AppBar(
                 Icons.Default.AccountBox,
                 title = AppConstants.SETTINGS,
-                onRefresh = { /*TODO*/ },
-                onBackPressed = { onBackPressed() })
+                onRefresh = { /*TODO*/ }
+            ) { onBackPressed() }
             Box(
                 modifier = Modifier
                     .fillMaxWidth()

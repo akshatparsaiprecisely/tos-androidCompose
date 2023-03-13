@@ -23,8 +23,8 @@ class AboutScreen : ComponentActivity() {
                         AppBar(
                             Icons.Default.Info,
                             title = AppConstants.ABOUT,
-                            onRefresh = { /*TODO*/ },
-                            onBackPressed = { onBackPressed() })
+                            onRefresh = { /*TODO*/ }
+                        ) { onBackPressed() }
                     }
                 }
             }

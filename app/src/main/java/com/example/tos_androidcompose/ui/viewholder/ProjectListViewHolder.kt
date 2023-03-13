@@ -6,7 +6,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.magnifier
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -16,13 +15,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.tos_androidcompose.R
 import com.example.tos_androidcompose.ui.model.projects.Project
 
 @Composable
-fun ListItem(item: Project, onClick: () -> Unit, onPopMenuClick: () -> Unit) {
+fun ListItem(item: Project, onClick: () -> Unit, onPopMenuClick: () -> Unit, id: Int) {
     BoxWithConstraints(
         modifier = Modifier
             .fillMaxWidth()
@@ -37,15 +35,28 @@ fun ListItem(item: Project, onClick: () -> Unit, onPopMenuClick: () -> Unit) {
         ) {
 
             Box() {
-                Text(
-                    text = item.name,
-                    style = MaterialTheme.typography.h6,
+                Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(40.dp)
-                        .padding(8.dp)
                         .align(Alignment.CenterStart)
-                )
+                ) {
+                    Image(
+                        painter = painterResource(id = id),
+                        contentDescription = "info",
+                        modifier = Modifier
+                            .padding(8.dp)
+                            .clickable(onClick = onPopMenuClick)
+                    )
+                    Text(
+                        text = item.name,
+                        style = MaterialTheme.typography.h6,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(40.dp)
+                            .padding(8.dp)
+                    )
+                }
+
                 Image(
                     painter = painterResource(id = R.drawable.ic_pop_menu),
                     contentDescription = "info",
@@ -66,12 +77,16 @@ fun ListItem(item: Project, onClick: () -> Unit, onPopMenuClick: () -> Unit) {
                     .padding(start = 10.dp)
             ) {
                 Column(modifier = Modifier.weight(1f)) {
-                        listItemsData(id = R.drawable.icon_info, title = "collected", data ="30" )
-                        listItemsData(id = R.drawable.ic_resurvey, title = "collected", data ="30" )
+                    listItemsData(id = R.drawable.icon_info, title = "collected", data = "30")
+                    listItemsData(id = R.drawable.ic_resurvey, title = "collected", data = "30")
                 }
-                Column(modifier = Modifier.weight(1f).padding(start = 10.dp, end = 10.dp)) {
-                        listItemsData(id = R.drawable.ic_approved, title = "collected", data ="30" )
-                        listItemsData(id = R.drawable.ic_pending, title = "collected", data ="30" )
+                Column(
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(start = 10.dp, end = 10.dp)
+                ) {
+                    listItemsData(id = R.drawable.ic_approved, title = "collected", data = "30")
+                    listItemsData(id = R.drawable.ic_pending, title = "collected", data = "30")
                 }
 
             }
@@ -86,22 +101,23 @@ fun ListItem(item: Project, onClick: () -> Unit, onPopMenuClick: () -> Unit) {
 }
 
 @Composable
-fun ProjectListViewHolder(items: List<Project>) {
+fun ProjectListViewHolder(items: List<Project>, onClick: () -> Unit) {
     LazyColumn {
         items(items = items) { item ->
             ListItem(
                 item = item,
-                onClick = { /* Do something */ },
-                onPopMenuClick = {}
+                onClick = onClick,
+                onPopMenuClick = {},
+                id = item.drawable
             )
         }
     }
 }
 
 @Composable
-fun listItemsData (id: Int, title: String, data: String) {
+fun listItemsData(id: Int, title: String, data: String) {
     Box(modifier = Modifier.fillMaxWidth()) {
-        Row (modifier = Modifier.align(Alignment.CenterStart)){
+        Row(modifier = Modifier.align(Alignment.CenterStart)) {
             Image(
                 painter = painterResource(id = id),
                 contentDescription = "info"

@@ -19,8 +19,8 @@ class NotificationScreen : ComponentActivity() {
                 AppBar(
                     Icons.Default.Clear,
                     title = getString(R.string.notification),
-                    onRefresh = { /*TODO*/ },
-                    onBackPressed = { onBackPressed() })
+                    onRefresh = { /*TODO*/ }
+                ) { onBackPressed() }
             }
         }
     }
