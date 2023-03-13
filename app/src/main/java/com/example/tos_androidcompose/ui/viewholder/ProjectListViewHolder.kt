@@ -21,7 +21,6 @@ import androidx.compose.ui.unit.dp
 import com.example.tos_androidcompose.R
 import com.example.tos_androidcompose.ui.model.projects.Project
 
-@Preview
 @Composable
 fun ListItem(item: Project, onClick: () -> Unit) {
     BoxWithConstraints(
