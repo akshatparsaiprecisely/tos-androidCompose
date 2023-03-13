@@ -27,4 +27,7 @@
     <string name="map_setting">Map Settings</string>
     <string name="offline_maps">Offline Maps</string>
     <string name="title_activity_form_statistics_screen">FormStatisticsScreen</string>
+    <string name="no_notification_found">No Notifications</string>
+    <string name="no_notification_msg">You don\'t have any notifications.</string>
+    <string name="title_activity_form_data_dashboard">FormDataDashboardActivity</string>
 </resources>

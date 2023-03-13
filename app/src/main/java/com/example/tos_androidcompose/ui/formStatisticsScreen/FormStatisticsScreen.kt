@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import com.example.tos_androidcompose.R
+import com.example.tos_androidcompose.ui.FormDashboardScreen.FormDataDashboardActivity
 import com.example.tos_androidcompose.ui.chats.ui.theme.TosandroidComposeTheme
 import com.example.tos_androidcompose.ui.common.AppBar
 import com.example.tos_androidcompose.ui.common.AppBarCustomImage
@@ -40,7 +41,7 @@ class FormStatisticsScreen : ComponentActivity() {
                         ProjectListViewHolder(items, onClick = {
                             val intent = Intent(
                                 this@FormStatisticsScreen,
-                                FormStatisticsScreen::class.java
+                                FormDataDashboardActivity::class.java
                             ).apply {
                                 putExtra("key", "ab")
                             }
