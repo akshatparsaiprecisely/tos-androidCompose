@@ -22,7 +22,7 @@ import com.example.tos_androidcompose.R
 import com.example.tos_androidcompose.ui.model.projects.Project
 
 @Composable
-fun ListItem(item: Project, onClick: () -> Unit) {
+fun ListItem(item: Project, onClick: () -> Unit, onPopMenuClick: () -> Unit) {
     BoxWithConstraints(
         modifier = Modifier
             .fillMaxWidth()
@@ -36,7 +36,7 @@ fun ListItem(item: Project, onClick: () -> Unit) {
                 .padding(bottom = 8.dp)
         ) {
 
-            Row() {
+            Box() {
                 Text(
                     text = item.name,
                     style = MaterialTheme.typography.h6,
@@ -44,12 +44,15 @@ fun ListItem(item: Project, onClick: () -> Unit) {
                         .fillMaxWidth()
                         .height(40.dp)
                         .padding(8.dp)
+                        .align(Alignment.CenterStart)
                 )
                 Image(
                     painter = painterResource(id = R.drawable.ic_pop_menu),
                     contentDescription = "info",
                     modifier = Modifier
                         .padding(8.dp)
+                        .align(Alignment.CenterEnd)
+                        .clickable(onClick = onPopMenuClick)
                 )
             }
             Spacer(
@@ -88,7 +91,8 @@ fun ProjectListViewHolder(items: List<Project>) {
         items(items = items) { item ->
             ListItem(
                 item = item,
-                onClick = { /* Do something */ }
+                onClick = { /* Do something */ },
+                onPopMenuClick = {}
             )
         }
     }
