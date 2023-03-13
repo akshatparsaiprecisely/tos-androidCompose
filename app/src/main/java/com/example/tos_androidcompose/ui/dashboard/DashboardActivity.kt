@@ -25,8 +25,10 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
@@ -37,9 +39,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.tos_androidcompose.DashboardButtons
 import com.example.tos_androidcompose.R
+import com.example.tos_androidcompose.ui.aboutScreen.AboutScreen
 import com.example.tos_androidcompose.ui.chats.ChatScreen
+import com.example.tos_androidcompose.ui.login.LoginScreen
 import com.example.tos_androidcompose.ui.notifiction.NotificationScreen
 import com.example.tos_androidcompose.ui.projects.ProjectScreen
+import com.example.tos_androidcompose.ui.settingsScreen.SettingsScreen
 import com.example.tos_androidcompose.ui.theme.DataStatsButtons
 import com.example.tos_androidcompose.ui.theme.Orange
 import com.example.tos_androidcompose.ui.theme.TosandroidComposeTheme
@@ -61,7 +66,8 @@ class DashboardActivity : ComponentActivity() {
     }
 
 
-    @Preview
+
+    @Preview(showBackground = true)
     @SuppressLint("CoroutineCreationDuringComposition", "UnusedMaterialScaffoldPaddingParameter")
     @Composable
     fun DashboardScreen() {
@@ -87,141 +93,195 @@ class DashboardActivity : ComponentActivity() {
         }
 
         Scaffold(
+            modifier = Modifier.clickable {
+
+            },
             scaffoldState = scaffoldState,
             drawerShape = customDrawerShape(),
             drawerContent = {
                 // Composable for the drawer content
                 DrawerContent(drawerItems = drawerItems, navController = navController)
             },
-            content = {
-                @Composable
-                fun navScreens() {
-                    NavHost(
-                        navController = navController,
-                        startDestination = Screen.Home.route,
-                    ) {
-                        composable(Screen.Home.route) {
-                            scope.launch {
-                                scaffoldState.drawerState.close()
-                            }
-                            // Composable for the home screen
-                        }
-                        composable(Screen.Settings.route) {
-                            // Composable for the settings screen
-                        }
-                        composable(Screen.About.route) {
-                            // Composable for the settings screen
-                        }
-                        composable(Screen.Logout.route) {
-                            // Composable for the settings screen
-                        }
+        )
+        {
+            NavHost(
+                navController = navController,
+                startDestination = Screen.Home.route,
+            ) {
+                composable(Screen.Home.route) {
+                    scope.launch {
+                        scaffoldState.drawerState.close()
                     }
+                    // Composable for the home screen
                 }
-                navScreens()
+                composable(Screen.Settings.route) {
+                    activity.startActivity(Intent(this@DashboardActivity,
+                        SettingsScreen::class.java))
+                }
+                composable(Screen.About.route) {
+                    // Composable for the settings screen
+                    activity.startActivity(Intent(this@DashboardActivity,
+                        AboutScreen::class.java))
+                }
+                composable(Screen.Logout.route) {
+                    // Composable for the settings screen
+                    activity.startActivity(Intent(this@DashboardActivity,
+                        LoginScreen::class.java))
+                }
+            }
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(color = Color.White)
+            ) {
+
                 Box(
                     modifier = Modifier
-                        .fillMaxSize()
-                        .background(color = Color.White)
+                        .fillMaxWidth()
+                        .height(200.dp)
+                        .background(color = colorPrimary)
                 ) {
 
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(200.dp)
-                            .background(color = colorPrimary)
-                    ) {
-
-                        Image(
-                            painter = painterResource(id = R.drawable.precisely_logo_white),
-                            contentDescription = "nav",
-                            Modifier
-                                .padding(top = 60.dp)
-                                .height(56.dp)
-                                .width(56.dp)
-                                .align(Alignment.TopCenter)
-                        )
-                    }
-
                     Image(
-                        painter = painterResource(id = R.drawable.navigation_menu),
+                        painter = painterResource(id = R.drawable.precisely_logo_white),
                         contentDescription = "nav",
                         Modifier
-                            .padding(20.dp)
-                            .clickable {
-                                scope.launch {
-                                    scaffoldState.drawerState.open()
-                                }
-                            },
-                        alignment = Alignment.TopStart
+                            .padding(top = 60.dp)
+                            .height(56.dp)
+                            .width(56.dp)
+                            .align(Alignment.TopCenter)
                     )
+                }
+
+                Image(
+                    painter = painterResource(id = R.drawable.navigation_menu),
+                    contentDescription = "nav",
+                    Modifier
+                        .padding(20.dp)
+                        .clickable {
+                            scope.launch {
+                                scaffoldState.drawerState.open()
+                            }
+                        },
+                    alignment = Alignment.TopStart
+                )
+
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 120.dp),
+                ) {
+
+                    val borderRadius = 16.dp
+                    val borderStrokeWidth = 2.dp
+                    BoxWithConstraints(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(127.dp)
+                            .padding(start = 30.dp, end = 30.dp, top = 20.dp, bottom = 2.dp)
+                            .shadow(
+                                borderStrokeWidth,
+                                shape = RoundedCornerShape(borderRadius)
+                            )
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .clip(RoundedCornerShape(borderRadius))
+                                .size(200.dp)
+
+                        ) {
+                            Row(
+                                modifier = Modifier
+                                    .background(Color.White)
+                                    .align(Alignment.Center),
+                                horizontalArrangement = Arrangement.spacedBy(20.dp)
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .weight(1f)
+                                        .fillMaxHeight()
+                                        .background(Color.White)
+                                        .padding(25.dp),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Image(
+                                        painter = painterResource(id = R.drawable.ic_baseline_folder_open_24),
+                                        contentDescription = "aa",
+                                    )
+                                }
+                                Column(
+                                    modifier = Modifier
+                                        .weight(2.7f)
+                                        .fillMaxHeight()
+                                        .padding(20.dp)
+                                ) {
+                                    Text(
+                                        text = "Tossuer",
+                                        fontSize = 20.sp,
+                                        color = colorPrimary
+                                    )
+                                    Text(
+                                        text = "Project assigned: 9",
+                                        fontSize = 11.sp,
+                                        color = Color.Gray
+                                    )
+                                    Text(
+                                        text = "Last Login",
+                                        fontSize = 11.sp,
+                                        color = Color.Gray
+                                    )
+                                }
+                            }
+                        }
+                    }
 
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(top = 120.dp),
+                            .background(Color.White)
+                            .padding(top = 20.dp),
                     ) {
-
-                        val borderRadius = 16.dp
-                        val borderStrokeWidth = 2.dp
-                        BoxWithConstraints(
+                        Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .height(127.dp)
-                                .padding(start = 30.dp, end = 30.dp, top = 20.dp, bottom = 2.dp)
-                                .shadow(
-                                    borderStrokeWidth,
-                                    shape = RoundedCornerShape(borderRadius)
-                                )
+                                .padding(start = 30.dp, end = 30.dp, top = 10.dp),
+                            horizontalArrangement = Arrangement.spacedBy(20.dp)
                         ) {
-                            Box(
+                            DashboardButtons(
+                                symbol = stringResource(id = R.string.projects),
+                                color = colorPrimary,
                                 modifier = Modifier
-                                    .fillMaxSize()
-                                    .clip(RoundedCornerShape(borderRadius))
-                                    .size(200.dp)
-
+                                    .aspectRatio(1f)
+                                    .weight(1f)
+                                    .padding(10.dp),
                             ) {
-                                Row(
-                                    modifier = Modifier
-                                        .background(Color.White)
-                                        .align(Alignment.Center),
-                                    horizontalArrangement = Arrangement.spacedBy(20.dp)
-                                ) {
-                                    Box(
-                                        modifier = Modifier
-                                            .weight(1f)
-                                            .fillMaxHeight()
-                                            .background(Color.White)
-                                            .padding(25.dp),
-                                        contentAlignment = Alignment.Center
-                                    ) {
-                                        Image(
-                                            painter = painterResource(id = R.drawable.ic_baseline_folder_open_24),
-                                            contentDescription = "aa"
-                                        )
-                                    }
-                                    Column(
-                                        modifier = Modifier
-                                            .weight(2.7f)
-                                            .fillMaxHeight()
-                                            .padding(20.dp)
-                                    ) {
-                                        Text(
-                                            text = "Tossuer",
-                                            fontSize = 20.sp,
-                                            color = colorPrimary
-                                        )
-                                        Text(
-                                            text = "Project assigned: 9",
-                                            fontSize = 11.sp,
-                                            color = Color.Gray
-                                        )
-                                        Text(
-                                            text = "Last Login",
-                                            fontSize = 11.sp,
-                                            color = Color.Gray
-                                        )
-                                    }
-                                }
+//                            fuctionality
+                                activity.startActivity(Intent(this@DashboardActivity,
+                                    ProjectScreen::class.java))
+                            }
+                            DashboardButtons(
+                                image = painterResource(id = R.drawable.notification),
+                                symbol = stringResource(id = R.string.notification),
+                                color = Color.Green,
+                                modifier = Modifier
+                                    .aspectRatio(1f)
+                                    .weight(1f)
+                            ) {
+                                activity.startActivity(Intent(this@DashboardActivity,
+                                    NotificationScreen::class.java))
+                                //                            fuctionality
+                            }
+                            DashboardButtons(
+                                image = painterResource(id = R.drawable.chat),
+                                symbol = stringResource(id = R.string.chats),
+                                color = Orange,
+                                modifier = Modifier
+                                    .aspectRatio(1f)
+                                    .weight(1f)
+                            ) {
+                                activity.startActivity(Intent(this@DashboardActivity,
+                                    ChatScreen::class.java))
                             }
                         }
 
@@ -229,108 +289,56 @@ class DashboardActivity : ComponentActivity() {
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .background(Color.White)
-                                .padding(top = 20.dp),
+                                .padding(start = 30.dp, end = 30.dp, top = 20.dp),
                         ) {
-                            Row(
+                            Text(
+                                text = "Data Stats",
+                                fontSize = 20.sp,
+                                color = Color.Black
+                            )
+                        }
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(start = 30.dp, end = 30.dp, top = 20.dp),
+                            horizontalArrangement = Arrangement.spacedBy(20.dp)
+                        ) {
+                            DataStatsButtons(
+                                titleText = "415",
+                                color = colorPrimary,
+                                symbol = stringResource(id = R.string.collected),
                                 modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(start = 30.dp, end = 30.dp, top = 10.dp),
-                                horizontalArrangement = Arrangement.spacedBy(20.dp)
+                                    .aspectRatio(1f)
+                                    .weight(1f)
+                                    .padding(10.dp)
                             ) {
-                                DashboardButtons(
-                                    symbol = getString(R.string.projects),
-                                    color = colorPrimary,
-                                    modifier = Modifier
-                                        .aspectRatio(1f)
-                                        .weight(1f)
-                                        .padding(10.dp),
-                                ) {
 //                            fuctionality
-                                    activity.startActivity(Intent(this@DashboardActivity,
-                                        ProjectScreen::class.java))
-                                }
-                                DashboardButtons(
-                                    image = painterResource(id = R.drawable.notification),
-                                    symbol = getString(R.string.notification),
-                                    color = Color.Green,
-                                    modifier = Modifier
-                                        .aspectRatio(1f)
-                                        .weight(1f)
-                                ) {
-                                    activity.startActivity(Intent(this@DashboardActivity,
-                                        NotificationScreen::class.java))
-                                    //                            fuctionality
-                                }
-                                DashboardButtons(
-                                    image = painterResource(id = R.drawable.chat),
-                                    symbol = getString(R.string.chats),
-                                    color = Orange,
-                                    modifier = Modifier
-                                        .aspectRatio(1f)
-                                        .weight(1f)
-                                ) {
-                                    activity.startActivity(Intent(this@DashboardActivity,
-                                        ChatScreen::class.java))
-                                }
                             }
-
-                            Column(
+                            DataStatsButtons(
+                                titleText = "415",
+                                symbol = stringResource(id = R.string.approved),
+                                color = Color.Green,
                                 modifier = Modifier
-                                    .fillMaxWidth()
-                                    .background(Color.White)
-                                    .padding(start = 30.dp, end = 30.dp, top = 20.dp),
+                                    .aspectRatio(1f)
+                                    .weight(1f)
                             ) {
-                                Text(
-                                    text = "Data Stats",
-                                    fontSize = 20.sp,
-                                    color = Color.Black
-                                )
+                                //                            fuctionality
                             }
-                            Row(
+                            DataStatsButtons(
+                                titleText = "415",
+                                symbol = stringResource(id = R.string.pending),
+                                color = Orange,
                                 modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(start = 30.dp, end = 30.dp, top = 20.dp),
-                                horizontalArrangement = Arrangement.spacedBy(20.dp)
+                                    .aspectRatio(1f)
+                                    .weight(1f)
                             ) {
-                                DataStatsButtons(
-                                    titleText = "415",
-                                    color = colorPrimary,
-                                    symbol = getString(R.string.collected),
-                                    modifier = Modifier
-                                        .aspectRatio(1f)
-                                        .weight(1f)
-                                        .padding(10.dp)
-                                ) {
-//                            fuctionality
-                                }
-                                DataStatsButtons(
-                                    titleText = "415",
-                                    symbol = getString(R.string.approved),
-                                    color = Color.Green,
-                                    modifier = Modifier
-                                        .aspectRatio(1f)
-                                        .weight(1f)
-                                ) {
-                                    //                            fuctionality
-                                }
-                                DataStatsButtons(
-                                    titleText = "415",
-                                    symbol = getString(R.string.pending),
-                                    color = Orange,
-                                    modifier = Modifier
-                                        .aspectRatio(1f)
-                                        .weight(1f)
-                                ) {
-                                    //                            fuctionality
-                                }
+                                //                            fuctionality
                             }
                         }
                     }
                 }
-                // rest of your screen content goes here
             }
-
-        )
+        }
     }
 
 }

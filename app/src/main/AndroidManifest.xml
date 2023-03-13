@@ -14,6 +14,16 @@
         android:theme="@style/Theme.TosandroidCompose"
         tools:targetApi="31">
         <activity
+            android:name=".ui.aboutScreen.AboutScreen"
+            android:exported="false"
+            android:label="@string/title_activity_about_screen"
+            android:theme="@style/Theme.TosandroidCompose" />
+        <activity
+            android:name=".ui.settingsScreen.SettingsScreen"
+            android:exported="false"
+            android:label="@string/title_activity_settings_screen"
+            android:theme="@style/Theme.TosandroidCompose" />
+        <activity
             android:name=".ui.login.LoginScreen"
             android:exported="true"
             android:label="@string/title_activity_login_screen"
@@ -26,24 +36,23 @@
         </activity>
         <activity
             android:name=".ui.notifiction.NotificationScreen"
-            android:exported="true"
+            android:exported="false"
             android:label="@string/title_activity_notification_screen"
             android:theme="@style/Theme.TosandroidCompose" />
         <activity
             android:name=".ui.projects.ProjectScreen"
-            android:exported="true"
+            android:exported="false"
             android:label="@string/title_activity_project_screen"
             android:theme="@style/Theme.TosandroidCompose" />
         <activity
             android:name=".ui.chats.ChatScreen"
-            android:exported="true"
+            android:exported="false"
             android:label="@string/title_activity_chat_screen"
             android:theme="@style/Theme.TosandroidCompose" />
         <activity
             android:name=".ui.dashboard.DashboardActivity"
-            android:exported="true"
-            android:theme="@style/Theme.TosandroidCompose"/>
-
+            android:exported="false"
+            android:theme="@style/Theme.TosandroidCompose" />
     </application>
 
 </manifest>

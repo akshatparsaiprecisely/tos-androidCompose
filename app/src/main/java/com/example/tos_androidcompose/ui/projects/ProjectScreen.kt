@@ -5,6 +5,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.ui.Modifier
 import com.example.tos_androidcompose.R
 import com.example.tos_androidcompose.ui.chats.ui.theme.TosandroidComposeTheme
@@ -21,6 +24,7 @@ class ProjectScreen : ComponentActivity() {
                 setContent {
                     Column(modifier = Modifier.fillMaxSize()) {
                         AppBar(
+                            Icons.Default.Refresh,
                             title = getString(R.string.projects),
                             onRefresh = { /*TODO*/ },
                             onBackPressed = { onBackPressed() })

@@ -6,11 +6,16 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.vector.ImageVector
 
 @Composable
-fun AppBar(title: String, onRefresh: () -> Unit, onBackPressed: () -> Unit) {
+fun AppBar(
+    imageVector: ImageVector,
+    title: String,
+    onRefresh: () -> Unit,
+    onBackPressed: () -> Unit
+) {
     TopAppBar(
         title = { Text(text = title) },
         navigationIcon = {
@@ -20,7 +25,7 @@ fun AppBar(title: String, onRefresh: () -> Unit, onBackPressed: () -> Unit) {
         },
         actions = {
             IconButton(onClick = onRefresh) {
-                Icon(Icons.Default.Refresh, contentDescription = "Refresh")
+                Icon(imageVector, contentDescription = "Refresh")
             }
         }
     )

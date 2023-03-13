@@ -5,9 +5,10 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.ui.Modifier
 import com.example.tos_androidcompose.R
-import com.example.tos_androidcompose.ui.chats.ui.theme.TosandroidComposeTheme
 import com.example.tos_androidcompose.ui.common.AppBar
 
 class NotificationScreen : ComponentActivity() {
@@ -16,10 +17,10 @@ class NotificationScreen : ComponentActivity() {
         setContent {
             Column(modifier = Modifier.fillMaxSize()) {
                 AppBar(
+                    Icons.Default.Clear,
                     title = getString(R.string.notification),
                     onRefresh = { /*TODO*/ },
                     onBackPressed = { onBackPressed() })
-                val items = listOf("Item 1", "Item 2", "Item 3","Item 4")
             }
         }
     }

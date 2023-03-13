@@ -7,10 +7,10 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.*
@@ -21,14 +21,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.tos_androidcompose.R
-import com.example.tos_androidcompose.ui.chats.ChatScreen
 import com.example.tos_androidcompose.ui.chats.ui.theme.TosandroidComposeTheme
 import com.example.tos_androidcompose.ui.dashboard.DashboardActivity
 import com.example.tos_androidcompose.ui.theme.colorPrimary
+import com.example.tos_androidcompose.ui.theme.colorPrimaryDark
 
 class LoginScreen : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +49,9 @@ class LoginScreen : ComponentActivity() {
     @Composable
     fun LoginContent() {
         val activity = LocalContext.current as Activity
-        var textValue by remember { mutableStateOf("") }
+        var username by remember { mutableStateOf("") }
+        var password by remember { mutableStateOf("") }
+        var organizatinId by remember { mutableStateOf("") }
         val borderRadius = 16.dp
         val borderStrokeWidth = 2.dp
         Image(
@@ -80,7 +85,7 @@ class LoginScreen : ComponentActivity() {
                         .padding(top = 20.dp)
                 )
                 Text(
-                    text = getString(R.string.map_reveal),
+                    text = stringResource(id = R.string.map_reveal),
                     fontSize = 22.sp,
                     color = colorPrimary,
                     modifier = Modifier
@@ -88,73 +93,90 @@ class LoginScreen : ComponentActivity() {
                         .padding(top = 20.dp)
                 )
                 Text(
-                    text = getString(R.string.geographical_information_system),
+                    text = stringResource(id = R.string.geographical_information_system),
                     fontSize = 14.sp,
-                    color = colorPrimary,
-                    modifier = Modifier
-                        .align(Alignment.CenterHorizontally)
-                )
-                Text(
-                    text = getString(R.string.geographical_information_system),
-                    fontSize = 14.sp,
-                    color = colorPrimary,
+                    color = colorPrimaryDark,
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally)
                 )
                 TextField(
-                    value = textValue,
+                    value = username,
                     onValueChange = { newValue: String ->
-                        textValue = newValue
+                        username = newValue
                     },
-                    label = { getString(R.string.login_username) },
+                    textStyle = TextStyle(color = Color.Black),
+                    label = {
+                        Text(
+                            text = stringResource(id = R.string.login_username),
+                            color = Color.Gray,
+                            fontSize = 11.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                    },
                     modifier = Modifier
-                        .padding(20.dp)
-                        .fillMaxWidth()
-                        .height(27.dp),
+                        .padding(top = 10.dp, start = 20.dp, end = 20.dp)
+                        .fillMaxWidth(),
                 )
 
                 TextField(
-                    value = textValue,
+                    value = password,
                     onValueChange = { newValue: String ->
-                        textValue = newValue
+                        password = newValue
                     },
-                    label = { getString(R.string.login_password) },
+                    textStyle = TextStyle(color = Color.Black),
+                    label = { Text(
+                        text = stringResource(id = R.string.login_password),
+                        color = Color.Gray,
+                        fontSize = 11.sp,
+                        fontWeight = FontWeight.Bold
+                    ) },
                     modifier = Modifier
-                        .padding(20.dp)
-                        .fillMaxWidth()
-                        .height(27.dp),
+                        .padding(top = 10.dp, start = 20.dp, end = 20.dp)
+                        .fillMaxWidth(),
                 )
                 TextField(
-                    value = textValue,
+                    value = organizatinId,
                     onValueChange = { newValue: String ->
-                        textValue = newValue
+                        organizatinId = newValue
                     },
-                    label = { getString(R.string.organisation_id_mandatory) },
+                    textStyle = TextStyle(color = Color.Black),
+                    label = { Text(
+                        text = stringResource(id = R.string.organisation_id_mandatory),
+                        color = Color.Gray,
+                        fontSize = 11.sp,
+                        fontWeight = FontWeight.Bold
+                    ) },
                     modifier = Modifier
-                        .padding(20.dp)
+                        .padding(top = 10.dp, start = 20.dp, end = 20.dp)
                         .fillMaxWidth()
-                        .height(27.dp),
                 )
-
                 Text(
-                    text = getString(R.string.forgot_password),
+                    text = stringResource(id = R.string.forgot_password),
                     fontSize = 11.sp,
                     color = colorPrimary,
+                    style = MaterialTheme.typography.body2,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(20.dp)
-                        .align(Alignment.Start)
+                        .padding(top = 10.dp, start = 20.dp, end = 20.dp)
                 )
                 Button(
-                    onClick = { activity.startActivity(
-                        Intent(this@LoginScreen,
-                            DashboardActivity::class.java)) },
+                    onClick = {
+                        activity.startActivity(
+                            Intent(
+                                this@LoginScreen,
+                                DashboardActivity::class.java
+                            )
+                        )
+                    },
                     modifier = Modifier
-                        .width(200.dp)
-                        .height(70.dp)
+                        .fillMaxWidth()
+                        .height(80.dp)
                         .align(Alignment.CenterHorizontally)
                         .padding(20.dp),
                 ) {
+                    Text(
+                        text = stringResource(id = R.string.login)
+                    )
                 }
             }
         }

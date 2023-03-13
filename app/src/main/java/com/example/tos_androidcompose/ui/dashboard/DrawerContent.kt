@@ -28,7 +28,7 @@ fun DrawerContent(
     navController: NavHostController,
 ) {
     Column(
-    modifier = Modifier.background(Color.White)
+        modifier = Modifier.background(Color.White)
     ) {
         Box(
             modifier = Modifier
@@ -42,7 +42,7 @@ fun DrawerContent(
                 modifier = Modifier
                     .background(colorPrimaryDark)
                     .align(Alignment.Center)
-                    .padding(top = 20.dp, start = 10.dp),
+                    .padding(start = 10.dp),
                 horizontalArrangement = Arrangement.spacedBy(20.dp)
             ) {
                 Box(
@@ -53,23 +53,24 @@ fun DrawerContent(
                             Color.Black,
                             RoundedCornerShape(borderRadius)
                         )
-                        .weight(1f)
-                        .height(84.dp)
+                        .height(50.dp)
+                        .width(50.dp)
                         .size(5.dp)
                         .background(Color.White)
-                        .padding(25.dp),
-                    contentAlignment = Alignment.Center
+                        .align(Alignment.CenterVertically),
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.ic_baseline_folder_open_24),
-                        contentDescription = "aa"
+                        contentDescription = "aa",
+                        modifier = Modifier
+                            .align(Alignment.Center)
                     )
                 }
                 Column(
                     modifier = Modifier
-                        .weight(2.7f)
+                        .fillMaxWidth()
                         .fillMaxHeight()
-                        .padding(10.dp)
+                        .padding(top = 30.dp)
                 ) {
                     Text(
                         text = "Tossuer",

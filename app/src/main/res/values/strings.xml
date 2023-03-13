@@ -13,8 +13,17 @@
     <string name="title_activity_login_screen">LoginScreen</string>
     <string name="map_reveal">Map Reveal</string>
     <string name="geographical_information_system">Geographical Information System</string>
+    <string name="transerve_online">Map Reveal</string>
     <string name="login_username">Email</string>
     <string name="login_password">Password</string>
     <string name="organisation_id_mandatory">Organization ID</string>
     <string name="forgot_password">Forgot password?</string>
+    <string name="login">Login</string>
+    <string name="title_activity_settings_screen">SettingsScreen</string>
+    <string name="title_activity_about_screen">aboutScreen</string>
+    <string name="general_setting">General Settings</string>
+    <string name="form_layout">Form Layout</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="map_setting">Map Settings</string>
+    <string name="offline_maps">Offline Maps</string>
 </resources>
