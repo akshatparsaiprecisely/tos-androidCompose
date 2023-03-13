@@ -26,4 +26,5 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="map_setting">Map Settings</string>
     <string name="offline_maps">Offline Maps</string>
+    <string name="title_activity_form_statistics_screen">FormStatisticsScreen</string>
 </resources>
